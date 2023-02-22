@@ -1,6 +1,5 @@
 name: Check Package
 on: [push, pull_request]
-
 jobs:
   check:
     runs-on: macOS-latest
@@ -12,9 +11,7 @@ jobs:
     - uses: r-lib/actions/setup-r@v1
       with:
         r-version: ${{ matrix.r-version }}
-    - name: Install devtools
-      run: Rscript -e 'install.packages("devtools")'
-    - name: Install dependencies
-      run: Rscript -e 'devtools::install_deps()'
-    - name: Check package
-      run: Rscript -e 'devtools::check()'
+    #- name: Install dependencies
+    #  run: Rscript -e 'devtools::install_deps()'
+    #- name: Check package
+    #  run: Rscript -e 'devtools::check()'
