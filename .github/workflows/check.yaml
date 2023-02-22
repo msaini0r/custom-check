@@ -5,11 +5,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Set up R
-      uses: ./.github/actions/my-action
+      uses: r-lib/actions/setup-r@v1
       with:
         r-version: '4.0.3'
     - name: Install dependencies
