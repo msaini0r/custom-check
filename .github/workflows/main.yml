@@ -1,21 +1,17 @@
-name: R Package Check
-
-on:
-  push:
-    branches:
-      - main
-
+name: Check Package
+on: [push, pull_request]
 jobs:
-  build:
+  check:
     runs-on: macOS-latest
+    strategy:
+      matrix:
+        r-version: [4.0.5]
     steps:
     - uses: actions/checkout@v2
-    - name: R Install Check
-      uses: r-lib/actions/setup-r@v1
+    - uses: r-lib/actions/setup-r@v1
       with:
-        version: "4.1.1"
-    - name: Install Package Dependencies
-      run: |
-        R -e "install.packages(c('devtools', 'remotes', 'testthat', 'roxygen2', 'covr', 'pkgdown', 'rmarkdown', 'knitr'), dependencies = TRUE)"
-    - name: Print custom message
-      run: echo "Congratulations! Your package passed the check."
+        r-version: ${{ matrix.r-version }}
+    - name: Install dependencies
+      run: Rscript -e 'devtools::install_deps()'
+    - name: Check package
+      run: Rscript -e 'devtools::check()'
