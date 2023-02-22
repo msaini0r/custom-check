@@ -1,3 +1,3 @@
-hello <- function(name) {
-  message(paste0("Hello, ", name, "!"))
+bye <- function(name) {
+  message(paste0("Bye, ", name, "!"))
 }
